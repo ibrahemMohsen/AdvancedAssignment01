@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.Metrics;
 using System.Numerics;
 using System.Reflection.Metadata;
+using System.Runtime.InteropServices.Marshalling;
+using System.Security.Cryptography;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AdvancedAssignment01
@@ -89,6 +91,12 @@ namespace AdvancedAssignment01
             SafeList<string> s = new();
             Console.WriteLine(s.Get(0) == null); // True (default of string)
             #endregion
+
+            #region Question15
+            // Covariance allows a generic type to use a more derived type where a base type is expected
+            // the out keyword marks a generic type parameter as covariant meaning it can only be used for output/return values not as method parameters
+            #endregion
+
 
         }
         #region Question04
