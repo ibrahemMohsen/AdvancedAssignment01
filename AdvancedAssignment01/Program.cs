@@ -118,6 +118,20 @@ namespace AdvancedAssignment01
             // Derived<T> inherits from Base<T> with the same type parameter T
             // whatever type T is (int, string, DateTime, etc) it is used in both base and derived.
             #endregion
+
+            #region Question20
+            var cache = new Cache<string, Cache<string, Product>.ProductCache>();
+
+            cache.Add("p1", new Cache<string, Product>.ProductCache(1, "Laptop", 10000m), TimeSpan.FromMinutes(10));
+
+            if (cache.Contains("p1"))
+            {
+                var p5 = cache.Get("p1");
+                Console.WriteLine(p5);
+            }
+
+            cache.Remove("p1");
+            #endregion
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
@@ -289,4 +303,68 @@ namespace AdvancedAssignment01
         }
     }
     #endregion
+
+    #region Question20
+    public class Cache<TKey, TValue> where TKey : notnull
+    {
+        private class CacheItem
+        {
+            public TValue Value { get; set; } = default!;
+            public DateTime Expiry { get; set; }
+            public bool IsExpired => DateTime.Now > Expiry;
+        }
+
+        private readonly Dictionary<TKey, CacheItem> _store = new();
+
+        // Add with expiration
+        public void Add(TKey key, TValue value, TimeSpan expiration)
+        {
+            _store[key] = new CacheItem
+            {
+                Value = value,
+                Expiry = DateTime.Now.Add(expiration)
+            };
+        }
+
+        public TValue? Get(TKey key)
+        {
+            if (!_store.TryGetValue(key, out var item))
+                return default;
+            if (item.IsExpired)
+            {
+                _store.Remove(key);
+                return default;
+            }
+            return item.Value;
+        }
+
+        public void Remove(TKey key) => _store.Remove(key);
+
+        public bool Contains(TKey key)
+        {
+            if (!_store.TryGetValue(key, out var item))
+                return false;
+            if (item.IsExpired)
+            {
+                _store.Remove(key);
+                return false;
+            }
+            return true;
+        }
+
+        public class ProductCache
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+
+            public ProductCache() { }
+            public ProductCache(int id, string name, decimal price)
+            {
+                Id = id; Name = name; Price = price;
+            }
+            public override string ToString() => $"{Id} : {Name} : {Price}";
+        }
+    #endregion
+    }
 }
