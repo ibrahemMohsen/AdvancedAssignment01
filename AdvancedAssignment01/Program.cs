@@ -35,6 +35,16 @@ namespace AdvancedAssignment01
             var b1 = new Box<int>(10);
             // var b2 = new Box<string>("Hi"); (gives an error)
             #endregion
+
+            #region Question08
+            // A class constraint allows a generic type to be only a reference type
+            // and doesn't allow it to be a value type
+
+            var c1 = new Container<string>("Hello");
+            // Container<int> c2 = new(10); (gives an error)
+            #endregion
+
+
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
@@ -114,6 +124,13 @@ namespace AdvancedAssignment01
     {
         public T Value { get; set; }
         public Box(T value) { Value = value; }
+    }
+    #endregion
+    #region Question08
+    internal class Container<T> where T : class
+    {
+        public Container(T value) { Value = value; }
+        public T Value { get; set; }
     }
     #endregion
 }
