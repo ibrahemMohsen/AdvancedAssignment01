@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Metrics;
+using System.Numerics;
 using System.Reflection.Metadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -72,6 +73,21 @@ namespace AdvancedAssignment01
 
             Repository<Order> repo = new Repository<Order>();
             Order o = repo.Create();
+            #endregion
+
+            #region Question13
+            // When T is unknown at compile time, you cannot return null or 0 directly
+            // default(T) / default returns the default value of the type (0, null, etc)
+            #endregion
+
+            #region Question14
+            SafeList<int> list = new SafeList<int>();
+            list.Add(10);
+            list.Add(20);
+            Console.WriteLine(list.Get(0)); // 10
+            Console.WriteLine(list.Get(5)); // 0 (default of int, no exception)
+            SafeList<string> s = new();
+            Console.WriteLine(s.Get(0) == null); // True (default of string)
             #endregion
 
         }
@@ -227,6 +243,21 @@ namespace AdvancedAssignment01
         public T Create()
         {
             return new T(); // Allowed: has public parameterless ctor
+        }
+    }
+    #endregion
+
+    #region Question14
+    public class SafeList<T>
+    {
+        private List<T> _items = new List<T>();
+        public void Add(T item) => _items.Add(item);
+
+        public T? Get(int index)
+        {
+            if (index < 0 || index >= _items.Count)
+                return default;
+            return _items[index];
         }
     }
     #endregion
