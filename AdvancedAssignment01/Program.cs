@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Metrics;
+﻿using System.Data.Common;
+using System.Diagnostics.Metrics;
 using System.Numerics;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices.Marshalling;
@@ -111,6 +112,11 @@ namespace AdvancedAssignment01
             #region Question18
             // Each closed generic type gets its own copy of static members
             // e.g. Box<int> and Box<string> do NOT share statics
+            #endregion
+
+            #region Question19
+            // Derived<T> inherits from Base<T> with the same type parameter T
+            // whatever type T is (int, string, DateTime, etc) it is used in both base and derived.
             #endregion
         }
         #region Question04
