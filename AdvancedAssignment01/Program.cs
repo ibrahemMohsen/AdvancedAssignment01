@@ -66,6 +66,13 @@ namespace AdvancedAssignment01
             //  T or its derived types must inherit from BaseClass
             #endregion
 
+            #region Question12
+            // we can combine multiple constraints
+            // where T : BaseClass, IInterface1, IInterface2, new()
+
+            Repository<Order> repo = new Repository<Order>();
+            Order o = repo.Create();
+            #endregion
 
         }
         #region Question04
@@ -202,5 +209,25 @@ namespace AdvancedAssignment01
         public void Add(T animal) { _animals.Add(animal); }
     }
     class Animal { }
+    #endregion
+
+    #region Question12
+    public interface IAuditable { void Audit(); }
+
+    public class BaseEntity { public int Id { get; set; } }
+
+    public class Order : BaseEntity, IAuditable
+    {
+        public void Audit() => Console.WriteLine("Order audited");
+        public Order() { } // public parameterless ctor
+    }
+
+    public class Repository<T> where T : BaseEntity, IAuditable, new()
+    {
+        public T Create()
+        {
+            return new T(); // Allowed: has public parameterless ctor
+        }
+    }
     #endregion
 }
