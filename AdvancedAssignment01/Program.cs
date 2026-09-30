@@ -20,7 +20,19 @@ namespace AdvancedAssignment01
             // A class with multiple type parameters is a generic class that has more than one type parameter
 
             #endregion
+            #region Question04
+            // A generic method is a method that can work with different data types using a type parameter
+            // instead of specifying one fixed type.
+            #endregion
         }
+        #region Question04
+        public static void Swap<T>(ref T a, ref T b)
+        {
+            T Temp = a;
+            a = b;
+            b = Temp;
+        }
+        #endregion
     }
     #region Question02
     internal class MyStack<T>
