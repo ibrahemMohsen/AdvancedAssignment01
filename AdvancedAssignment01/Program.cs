@@ -102,6 +102,11 @@ namespace AdvancedAssignment01
             // Contravariance allows a generic type to use a less derived(base) type where a more derived type is expected
             // the in keyword marks a generic type parameter as contravariant meaning it can only be used for input/method parameters not as return values
             #endregion
+
+            #region Question17
+            // Covariance(out) lets you use a more derived type where a base type is expected
+            // while contravariance(in) lets you use a base type where a more derived type is expected
+            #endregion
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
