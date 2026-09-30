@@ -62,6 +62,11 @@ namespace AdvancedAssignment01
             // var p3 = new Printer<string>(); (gives an error)
             #endregion
 
+            #region Question11
+            //  T or its derived types must inherit from BaseClass
+            #endregion
+
+
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
@@ -188,5 +193,14 @@ namespace AdvancedAssignment01
             item.Print(); // We can call Print because of constraint
         }
     }
+    #endregion
+
+    #region Question11
+    internal class AnimalShelter<T> where T : Animal
+    {
+        private readonly List<T> _animals = [];
+        public void Add(T animal) { _animals.Add(animal); }
+    }
+    class Animal { }
     #endregion
 }
