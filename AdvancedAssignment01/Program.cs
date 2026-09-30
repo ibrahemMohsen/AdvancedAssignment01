@@ -2,6 +2,7 @@
 using System.Numerics;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices.Marshalling;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -97,7 +98,10 @@ namespace AdvancedAssignment01
             // the out keyword marks a generic type parameter as covariant meaning it can only be used for output/return values not as method parameters
             #endregion
 
-
+            #region Question16
+            // Contravariance allows a generic type to use a less derived(base) type where a more derived type is expected
+            // the in keyword marks a generic type parameter as contravariant meaning it can only be used for input/method parameters not as return values
+            #endregion
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
