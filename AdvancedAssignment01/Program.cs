@@ -33,6 +33,13 @@ namespace AdvancedAssignment01
             b = Temp;
         }
         #endregion
+        #region Question05
+        public static T FindMax<T>(T a, T b) where T : IComparable<T>
+        {
+            return a.CompareTo(b) > 0 ? a : b;
+        }
+
+        #endregion
     }
     #region Question02
     internal class MyStack<T>
