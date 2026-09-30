@@ -44,6 +44,14 @@ namespace AdvancedAssignment01
             // Container<int> c2 = new(10); (gives an error)
             #endregion
 
+            #region Question09
+            // The new constraint requires that the type has a public parameterless constructor
+            // it allows you to create new instances of T using new T()
+
+            var factory = new Factory<Product>();
+            Product p = factory.Create();
+            //var bad = new Factory<string>(); (gives an error)
+            #endregion
 
         }
         #region Question04
@@ -131,6 +139,21 @@ namespace AdvancedAssignment01
     {
         public Container(T value) { Value = value; }
         public T Value { get; set; }
+    }
+    #endregion
+    #region Question09
+    public class Factory<T> where T : new()
+    {
+        public T Create()
+        {
+            return new T();
+        }
+    }
+
+    class Product
+    {
+        public int Id { get; set; }
+        public Product() { Id = 0; }
     }
     #endregion
 }
