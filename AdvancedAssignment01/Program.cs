@@ -107,6 +107,11 @@ namespace AdvancedAssignment01
             // Covariance(out) lets you use a more derived type where a base type is expected
             // while contravariance(in) lets you use a base type where a more derived type is expected
             #endregion
+
+            #region Question18
+            // Each closed generic type gets its own copy of static members
+            // e.g. Box<int> and Box<string> do NOT share statics
+            #endregion
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
