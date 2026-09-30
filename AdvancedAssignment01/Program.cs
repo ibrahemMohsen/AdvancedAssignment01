@@ -24,6 +24,9 @@ namespace AdvancedAssignment01
             // A generic method is a method that can work with different data types using a type parameter
             // instead of specifying one fixed type.
             #endregion
+            #region Question06
+            // A generic interface is an interface that uses a type parameter so it can define behavior for different data types
+            #endregion
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
@@ -87,6 +90,15 @@ namespace AdvancedAssignment01
         }
         public T1 First { get; set; }
         public T2 Second { get; set; }
+    }
+    #endregion
+    #region Question06
+    internal interface IReporitory<TEntity>
+    {
+        void Add(TEntity item);
+        List<TEntity> GetAll();
+        TEntity? GetById(int id);
+        void Delete(int Id);
     }
     #endregion
 }
