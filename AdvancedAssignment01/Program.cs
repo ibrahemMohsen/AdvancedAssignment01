@@ -53,6 +53,15 @@ namespace AdvancedAssignment01
             //var bad = new Factory<string>(); (gives an error)
             #endregion
 
+            #region Question10
+            // The interface constraint requires that the type implements the specified interface
+            var p1 = new Printer<Document>();
+            p1.PrintItem(new Document());
+            var p2 = new Printer<Report>();
+            p2.PrintItem(new Report());
+            // var p3 = new Printer<string>(); (gives an error)
+            #endregion
+
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
@@ -154,6 +163,30 @@ namespace AdvancedAssignment01
     {
         public int Id { get; set; }
         public Product() { Id = 0; }
+    }
+    #endregion
+
+    #region Question10
+    public interface IPrintable
+    {
+        void Print();
+    }
+
+    public class Document : IPrintable
+    {
+        public void Print() => Console.WriteLine("Document printed");
+    }
+    public class Report : IPrintable
+    {
+        public void Print() => Console.WriteLine("Report printed");
+    }
+
+    public class Printer<T> where T : IPrintable
+    {
+        public void PrintItem(T item)
+        {
+            item.Print(); // We can call Print because of constraint
+        }
     }
     #endregion
 }
