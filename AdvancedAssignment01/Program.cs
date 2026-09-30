@@ -27,6 +27,14 @@ namespace AdvancedAssignment01
             #region Question06
             // A generic interface is an interface that uses a type parameter so it can define behavior for different data types
             #endregion
+
+            #region Question07
+            // A struct constraint allows a generic type to be only a value type
+            // and doesn't allow it to be a reference type
+
+            var b1 = new Box<int>(10);
+            // var b2 = new Box<string>("Hi"); (gives an error)
+            #endregion
         }
         #region Question04
         public static void Swap<T>(ref T a, ref T b)
@@ -99,6 +107,13 @@ namespace AdvancedAssignment01
         List<TEntity> GetAll();
         TEntity? GetById(int id);
         void Delete(int Id);
+    }
+    #endregion
+    #region Question07
+    public class Box<T> where T : struct
+    {
+        public T Value { get; set; }
+        public Box(T value) { Value = value; }
     }
     #endregion
 }
