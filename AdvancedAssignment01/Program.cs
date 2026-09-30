@@ -16,7 +16,10 @@ namespace AdvancedAssignment01
             // Code Reusability: write once use with many types
             // Better Performance: No boxing/ unboxing for value types
             #endregion
+            #region Question03
+            // A class with multiple type parameters is a generic class that has more than one type parameter
 
+            #endregion
         }
     }
     #region Question02
@@ -53,6 +56,18 @@ namespace AdvancedAssignment01
                 return _items[_top - 1];
             return default;
         }
+    }
+    #endregion
+    #region Question03
+    internal class Pair<T1, T2>
+    {
+        public Pair(T1 first, T2 second)
+        {
+            First = first;
+            Second = second;
+        }
+        public T1 First { get; set; }
+        public T2 Second { get; set; }
     }
     #endregion
 }
